@@ -3,7 +3,7 @@
 require_once("../db_connect.php");
 
 if($_POST){
-   var_dump($_POST);
+//    var_dump($_POST);
     if(!empty($_POST['number']) && !empty($_POST['brand'])&& !empty($_POST['model']) && !empty($_POST['color'])){
             $number=$_POST['number'];
             $brand=$_POST['brand'];
@@ -17,12 +17,13 @@ if($_POST){
     header("Location: ../views/car_add.php");
     die;
 }
-var_dump($userid);
+//var_dump($userid);
 try{
     $sql = "INSERT INTO cars (number, brand, model, color, user_id) VALUES ('$number', '$brand', '$model', '$color', $userid)";
     $query = $conn->prepare($sql);
     $query->execute();
-    header("Location: ../index.php");
+   header("Location: ../views/cars.php?userid=$userid");
+
 } catch(PDOException $e){
     echo "Insert failed: ". $e->getMessage();
 }

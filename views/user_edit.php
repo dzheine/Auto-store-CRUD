@@ -5,8 +5,10 @@ require_once("../db_connect.php");
 //susirenkame duomenis redagavimui is DB
 
 if(isset($_GET)){
+
     try{
-    $userid=$_GET['userid'];
+     $userid=$_GET['userid'];
+
     // var_dump($userid);
     $sql= "SELECT * FROM users WHERE id='$userid'";
     $query=$conn->prepare($sql);

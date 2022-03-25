@@ -10,7 +10,7 @@ if(isset($_GET)){
         $query = $conn->prepare($sql);
         $query->execute();
         $result= $query->fetch();
-            // var_dump($result);
+        //    var_dump($result);
             $userid=$result['user_id'];
     }catch(PDOExeption $e){
         echo "Failed: ". $e->getMessage();
@@ -25,7 +25,7 @@ if(isset($_GET)){
             <div class="card bg-light mb-8">
                 <div class="card-header">Please edit the required information</div>
                 <div class="card-body">
-                   <form action="../scripts/car_edit.php" method="POST" >
+                   <form action="../scripts/car_edit.php" method="POST">
                         <div class="form-group my-3">
                             <input type="text" class="form-control" placeholder="Car number" name="number" value="<?php echo $result['number'];?>">
                         </div>
@@ -38,9 +38,9 @@ if(isset($_GET)){
                         <div class="form-group my-3">
                             <input type="text" class="form-control" placeholder="Color" name="color" value="<?php echo $result['color'];?>">
                         </div>
-                        <input type="hidden" name="userid" value="<?php echo $userid;?>">
-                        <input type="hidden" name="carid" value="<?php echo $carid;?>">
-                        <button type="submit" class="btn btn-secondary">Submit</button>
+                            <input type="hidden" name="userid" value="<?php echo $userid;?>">
+                            <input type="hidden" name="carid" value="<?php echo $carid;?>">
+                        <input type="submit" name="submit" class="btn btn-secondary" value="submit">
                    </form>
                 </div>
             </div>

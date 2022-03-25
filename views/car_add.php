@@ -3,8 +3,9 @@
 include("../layout/header.php");
 require_once("../db_connect.php");
 
-if($_POST){
-    $userid=$_POST['userid'];
+if($_GET){
+    $userid=$_GET['userid'];
+    // var_dump($userid);
 }
 ?>
 

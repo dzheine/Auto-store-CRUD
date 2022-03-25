@@ -1,8 +1,9 @@
 <?php
 require_once("./db_connect.php");
 
+//issitraukiam info us DB apei users
 try{
-    $sql= "SELECT * FROM users";
+    $sql= "SELECT * FROM users order by id DESC";
     $query=$conn->prepare($sql);
     $query->execute();
     $result= $query->fetchAll();
@@ -25,6 +26,7 @@ try{
 </head>
 <body>
 
+<!-- navbar -->
 <nav class="navbar navbar-light bg-dark">
   <span class="navbar-brand mb-0 h1 text-white">Welcome to the AUTO STORE!</span>
   <div class="form-inline my-2 my-lg-0">
@@ -37,6 +39,7 @@ try{
     </form>
 </nav>
   
+<!-- vartototju lentele  -->
   <div class="table-responsive-sm" style="width: 50rem;">
 <table class="table table-sm table-hover table-dark">
   <thead>
@@ -48,11 +51,24 @@ try{
       <th scope="col-2"></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody >
     <?php
     foreach($result as $user){
         echo "<tr>
-        <td>".$user['first_name']."</td><td>".$user['last_name']."</td><td>".$user['email']."</td><td><a class='text-white mr-md-3' href='./views/cars.php?userid=".$user['id']."'>Check the cars</a></td><td><a href='./views/user_edit.php?userid=".$user['id']."'><i class='fa-solid fa-pen-to-square'></i></a><a href='./scripts/user_delete.php?userid=".$user['id']."'><i class='fa-solid fa-trash-can'></i></a></td></tr>";
+        <td>".$user['first_name']."</td>
+        <td>".$user['last_name']."</td>
+        <td>".$user['email']."</td>
+        <td>
+            <form  action='./views/cars.php' method='GET'>
+                <button class='btn btn-outline-dark text-white' type='submit'>CHECK THE CARS</button>
+                <input type='hidden' name='userid' value=".$user['id'].">
+            </form>
+        </td>
+        <td>
+            <a href='./views/user_edit.php?userid=".$user['id']."'><i class='fa-solid fa-pen-to-square'></i></a>
+            <a href='./scripts/user_delete.php?userid=".$user['id']."'><i class='fa-solid fa-trash-can'></i></a>
+        </td>
+        </tr>";
     }
     ?>
   </tbody>
